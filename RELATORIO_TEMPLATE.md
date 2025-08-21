@@ -1,28 +1,26 @@
-# Relatório do Laboratório 2 - Chamadas de Sistema
+# 📝 Relatório do Laboratório 2 - Chamadas de Sistema
 
 ---
 
-## Exercício 1a - Observação printf() vs 1b - write()
+## 1️⃣ Exercício 1a - Observação printf() vs 1b - write()
 
-### Comandos executados:
+### 💻 Comandos executados:
 ```bash
 strace -e write ./ex1a_printf
 strace -e write ./ex1b_write
 ```
 
-### Análise
+### 🔍 Análise
 
 **1. Quantas syscalls write() cada programa gerou?**
-- ex1a_printf: _____ syscalls
-- ex1b_write: _____ syscalls
+- ex1a_printf: 8 syscalls
+- ex1b_write: 7 syscalls
 
 **2. Por que há diferença entre os dois métodos? Consulte o docs/printf_vs_write.md**
+Há diferença, pois o printf é capaz de escrever textos para o usuário, formatar dados e é utilizado para casos que não seja necessário uma performance crítica.
+E o write é capaz de escrever, além de texto, dados binários, comtrolar quando enviar os dados e possui um comportamento previsível.
 
-```
-[Sua análise aqui]
-```
-
-**3. Qual método é mais previsível? Por quê?**
+**3. Qual método é mais previsível? Por quê você acha isso?**
 
 ```
 [Sua análise aqui]
@@ -30,20 +28,20 @@ strace -e write ./ex1b_write
 
 ---
 
-## Exercício 2 - Leitura de Arquivo
+## 2️⃣ Exercício 2 - Leitura de Arquivo
 
-### Resultados da execução:
+### 📊 Resultados da execução:
 - File descriptor: _____
 - Bytes lidos: _____
 
-### Comando strace:
+### 🔧 Comando strace:
 ```bash
 strace -e openat,read,close ./ex2_leitura
 ```
 
-### Análise
+### 🔍 Análise
 
-**1. Qual file descriptor foi usado? Por que não 0, 1 ou 2?**
+**1. Qual file descriptor foi usado? Por que não começou em 0, 1 ou 2?**
 
 ```
 [Sua análise aqui]
@@ -55,13 +53,7 @@ strace -e openat,read,close ./ex2_leitura
 [Sua análise aqui]
 ```
 
-**3. O que acontece se esquecer de fechar o arquivo?**
-
-```
-[Sua análise aqui]
-```
-
-**4. Por que verificar retorno de cada syscall?**
+**3. Por que verificar retorno de cada syscall?**
 
 ```
 [Sua análise aqui]
@@ -69,15 +61,15 @@ strace -e openat,read,close ./ex2_leitura
 
 ---
 
-## Exercício 3 - Contador com Loop
+## 3️⃣ Exercício 3 - Contador com Loop
 
-### Resultados (BUFFER_SIZE = 64):
+### 📋 Resultados (BUFFER_SIZE = 64):
 - Linhas: _____ (esperado: 25)
 - Caracteres: _____
 - Chamadas read(): _____
 - Tempo: _____ segundos
 
-### Experimentos com buffer:
+### 🧪 Experimentos com buffer:
 
 | Buffer Size | Chamadas read() | Tempo (s) |
 |-------------|-----------------|-----------|
@@ -86,7 +78,7 @@ strace -e openat,read,close ./ex2_leitura
 | 256         |                 |           |
 | 1024        |                 |           |
 
-### Análise
+### 🔍 Análise
 
 **1. Como o tamanho do buffer afeta o número de syscalls?**
 
@@ -94,19 +86,13 @@ strace -e openat,read,close ./ex2_leitura
 [Sua análise aqui]
 ```
 
-**2. Como você detecta o fim do arquivo?**
+**2. Todas as chamadas read() retornaram BUFFER_SIZE bytes? Discorra brevemente sobre**
 
 ```
 [Sua análise aqui]
 ```
 
-**3. Todas as chamadas read() retornaram BUFFER_SIZE bytes?**
-
-```
-[Sua análise aqui]
-```
-
-**4. Qual é a relação entre syscalls e performance?**
+**3. Qual é a relação entre syscalls e performance?**
 
 ```
 [Sua análise aqui]
@@ -114,21 +100,21 @@ strace -e openat,read,close ./ex2_leitura
 
 ---
 
-## Exercício 4 - Cópia de Arquivo
+## 4️⃣ Exercício 4 - Cópia de Arquivo
 
-### Resultados:
+### 📈 Resultados:
 - Bytes copiados: _____
 - Operações: _____
 - Tempo: _____ segundos
 - Throughput: _____ KB/s
 
-### Verificação:
+### ✅ Verificação:
 ```bash
 diff dados/origem.txt dados/destino.txt
 ```
 Resultado: [ ] Idênticos [ ] Diferentes
 
-### Análise
+### 🔍 Análise
 
 **1. Por que devemos verificar que bytes_escritos == bytes_lidos?**
 
@@ -162,9 +148,9 @@ Resultado: [ ] Idênticos [ ] Diferentes
 
 ---
 
-## Análise Geral
+## 🎯 Análise Geral
 
-### Conceitos Fundamentais
+### 📖 Conceitos Fundamentais
 
 **1. Como as syscalls demonstram a transição usuário → kernel?**
 
@@ -184,7 +170,7 @@ Resultado: [ ] Idênticos [ ] Diferentes
 [Sua análise aqui]
 ```
 
-### Comparação de Performance
+### ⚡ Comparação de Performance
 
 ```bash
 # Teste seu programa vs cp do sistema
@@ -202,8 +188,7 @@ time cp dados/origem.txt dados/destino_cp.txt
 
 ---
 
-## Entrega
-
+## 📤 Entrega
 Certifique-se de ter:
 - [ ] Todos os códigos com TODOs completados
 - [ ] Traces salvos em `traces/`
@@ -216,3 +201,4 @@ strace -o traces/ex2_trace.txt ./ex2_leitura
 strace -c -o traces/ex3_stats.txt ./ex3_contador
 strace -o traces/ex4_trace.txt ./ex4_copia
 ```
+# Bom trabalho!
