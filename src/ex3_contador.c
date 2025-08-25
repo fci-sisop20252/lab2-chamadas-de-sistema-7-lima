@@ -36,18 +36,18 @@ int main() {
         return 1;
     }
     
-    // TODO 1: loop até read() retornar 0 (fim do arquivo)
+    // Loop até EOF (read retornar 0)
     while ((bytes_lidos = read(fd, buffer, BUFFER_SIZE)) > 0) {
         total_reads++;
         
-        // TODO 2: contar caracteres '\n' no buffer
+        // Contar '\n'
         for (int i = 0; i < bytes_lidos; i++) {
             if (buffer[i] == '\n') {
                 total_linhas++;
             }
         }
         
-        // TODO 3: somar total de caracteres
+        // Somar total de caracteres
         total_caracteres += bytes_lidos;
         
         if (total_reads % 10 == 0) {
@@ -55,7 +55,7 @@ int main() {
         }
     }
     
-    // TODO 4: verificar erro na leitura
+    // Verificar erro na leitura
     if (bytes_lidos < 0) {
         perror("Erro na leitura");
         close(fd);
@@ -82,6 +82,7 @@ int main() {
     
     return 0;
 }
+
 
 
 /*
